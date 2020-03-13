@@ -44,7 +44,17 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 	// (test_options_greet) Setup options for greeting message
 	options.greeting = 'Greet test!'
 
-	// (test_options_on) Setup options for on actions
+	// (test_options_on_join) Setup options for join actions
+	options.on.UserJoin = data => {
+		socket = data.socket;
+		return response => {
+			socket.call('msg',[
+				`Hi ${data.username}! I'm pingbot! Write !ping and I will pong back!`,
+			]);
+		}
+	};
+
+	// (test_options_on_chat) Setup options for chat actions
 	options.on.ChatMessage = function(data) {
 		socket = data.socket;
 		return response => {
