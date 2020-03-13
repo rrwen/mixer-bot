@@ -112,6 +112,52 @@
 
           </div>
           
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.channel_id</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  </td>
+  <td class='break-word'><span>channel id to join for the bot, which can be found here for a user: 
+<a href="https://mixer.com/api/v1/channels/">https://mixer.com/api/v1/channels/</a>
+<username>
+?fields=id
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.greeting</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">String</a></code>
+  </td>
+  <td class='break-word'><span>the greeting message to display when the bot joins a channel
+</span></td>
+</tr>
+
+
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>options.on</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function">Function</a></code>
+  </td>
+  <td class='break-word'><span>a list of functions that define the mixer bot's response on channel actions (ChatMessage, UserJoin). Data is passed with reference to the mixer client (data.client) and ws socket (data.socket).
+</span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
         </div>
       
     </div>
@@ -148,7 +194,17 @@ options.greeting = <span class="hljs-string">'Hello!'</span>;
 
 <span class="hljs-comment">// Setup channel ID</span>
 <span class="hljs-comment">// Get your channel id here: https://mixer.com/api/v1/channels/&lt;username&gt;?fields=id</span>
-options.channel_id = <span class="hljs-string">'&lt;CHANNEL_ID&gt;'</span>; 
+options.channel_id = <span class="hljs-string">'&lt;CHANNEL_ID&gt;'</span>;
+
+<span class="hljs-comment">// Assign bot to greet user when they enter</span>
+options.on.UserJoin = <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {
+    socket = data.socket;
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">response</span> =&gt;</span> {
+        socket.call(<span class="hljs-string">'msg'</span>,[
+            <span class="hljs-string">`Hi <span class="hljs-subst">${data.username}</span>! I'm pingbot! Write !ping and I will pong back!`</span>,
+        ]);
+    }
+};
 
 <span class="hljs-comment">// Assign bot to pong user if they message !ping</span>
 options.on.ChatMessage = <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {

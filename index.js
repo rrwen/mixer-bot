@@ -11,6 +11,9 @@ const ws = require('ws');
  *
  * @module mixer-bot
  * @param {Object} [options={}] options for the mixer-bot.
+ * @param {String} options.channel_id channel id to join for the bot, which can be found here for a user: https://mixer.com/api/v1/channels/<username>?fields=id
+ * @param {String} options.greeting the greeting message to display when the bot joins a channel
+ * @param {Function} options.on a list of functions that define the mixer bot's response on channel actions (ChatMessage, UserJoin). Data is passed with reference to the mixer client (data.client) and ws socket (data.socket).
  * @returns {Object} returns a mixerbot client.
  *
  * @example
@@ -27,7 +30,17 @@ const ws = require('ws');
  * 
  * // Setup channel ID
  * // Get your channel id here: https://mixer.com/api/v1/channels/<username>?fields=id
- * options.channel_id = '<CHANNEL_ID>'; 
+ * options.channel_id = '<CHANNEL_ID>';
+ * 
+ * // Assign bot to greet user when they enter
+ * options.on.UserJoin = data => {
+ *     socket = data.socket;
+ *     return response => {
+ *         socket.call('msg',[
+ *             `Hi ${data.username}! I'm pingbot! Write !ping and I will pong back!`,
+ *         ]);
+ *     }
+ * };
  * 
  * // Assign bot to pong user if they message !ping
  * options.on.ChatMessage = data => {
