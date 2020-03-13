@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@mixer/client-node": "^3.5.0",
+    "dotenv": "^8.2.0",
     "ws": "^7.2.3"
   }
 }

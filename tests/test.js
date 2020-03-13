@@ -34,21 +34,35 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 	t.comment('Dependencies: ' + testedPackages.join(', '));
 	t.comment('Developer: ' + devPackages.join(', '));
 
-	// (test_pass) Pass a test
-	t.pass('(MAIN) test pass');
+	// (test_load) Load package correctly
+	t.pass('(MAIN) Package loaded');
 
-	// (test_equal) Equal test
-	var actual = 1;
-	var expected = 1;
-	t.equal(actual, expected, '(A) Equal test');
+	// (test_options) Setup options
+	options = {};
+	options.on = {};
 
-	// (test_deepequal) Deep equal test
-	var actual = {a: 1, b: {c: 2}, d: [3]};
-	var expected = {a: 1, b: {c: 2}, d: [3]};
-	t.deepEquals(actual, expected, '(B) Deep equal test');
+	// (test_options_greet) Setup options for greeting message
+	options.greeting = 'Greet test!'
 
-	// (test_fail) Fail a test
-	// t.fail('(MAIN) test fail');
+	// (test_options_on) Setup options for on actions
+	options.on.ChatMessage = function(data) {
+		socket = data.socket;
+		return data => {
+			if (data.message.message[0].data.toLowerCase().startsWith('!ping')) {
+				socket.call('msg', [`@${data.user_name} PONG!`]);
+				console.log(`Ponged ${data.user_name}`);
+			}
+		}
+	};
 
+	// (test_run) Test package run with above options
+	mixerbot(options)
+		.then(data => {
+			t.pass('(MAIN) Package runs with greeting and on action');
+			data.socket.close();
+		})
+		.catch(err => {
+			t.fail(err);
+		});
 	t.end();
 });
