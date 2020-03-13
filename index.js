@@ -2,11 +2,11 @@
 // rrwen.dev@gmail.com
 
 /**
- * Description.
+ * Creates a mixer bot client.
  *
  * @module mixer-bot
- * @param {Object} [options={}] parameter description.
- * @returns {Object} return description.
+ * @param {Object} [options={}] options for the mixer-bot.
+ * @returns {Object} returns a mixerbot client.
  *
  * @example
  * var mixerbot = require('mixer-bot');
@@ -14,3 +14,4 @@
 module.exports = options => {
 	options = options || {};
 };
+
