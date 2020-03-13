@@ -59,21 +59,21 @@ options.on.UserJoin = data => {
 
 // Assign bot to pong user if they message !ping
 options.on.ChatMessage = data => {
-	socket = data.socket;
-	return response => {
-		if (response.message.message[0].data.toLowerCase().startsWith('!ping')) {
-			socket.call('msg', [`@${response.user_name} PONG!`]);
-			console.log(`Ponged ${response.user_name}`);
-		}
-	}
+    socket = data.socket;
+    return response => {
+        if (response.message.message[0].data.toLowerCase().startsWith('!ping')) {
+            socket.call('msg', [`@${response.user_name} PONG!`]);
+            console.log(`Ponged ${response.user_name}`);
+        }
+    }
 };
 
 // Handle errors
 options.on.error = data => {
-	return error => {
-		console.error('Socket error');
-		console.error(error);
-	}
+    return error => {
+        console.error('Socket error');
+        console.error(error);
+    }
 };
 
 // Run mixer bot
