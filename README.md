@@ -5,7 +5,7 @@ rrwen.dev@gmail.com
 
 * [Documentation](https://rrwen.github.io/mixer-bot)
 
-Simplified chat for the mixer live streaming platform
+Simplified chat bot for the mixer live streaming platform
 
 [![npm version](https://badge.fury.io/js/mixer-bot.svg)](https://badge.fury.io/js/mixer-bot)
 [![Build Status](https://travis-ci.org/rrwen/mixer-bot.svg?branch=master)](https://travis-ci.org/rrwen/mixer-bot)
