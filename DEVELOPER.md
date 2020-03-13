@@ -81,17 +81,13 @@ The module [mixer-bot](https://www.npmjs.com/package/mixer-bot) uses the followi
 
 npm | Purpose
 --- | ---
-component | description
-component | description
-component | description
-component | description
+[@mixer/client-node](https://www.npmjs.com/package/@mixer/client-node) | official mixer client library for node
+[ws](https://www.npmjs.com/package/ws) | web sockets used by the mixer client
 
 ```
-component   <-- detail
+    ws               <-- detail
     |
-component   <-- detail
+@mixer/client-node   <-- detail
     |
-component   <-- detail
-    |
-component   <-- detail
+mixer-bot            <-- this package
 ```
