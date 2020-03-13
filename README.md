@@ -25,7 +25,7 @@ Simplified chat bot for the mixer live streaming platform
 npm install --save mixer-bot
 ```
 
-For the latest developer version, see [Developer Install](#developer-install).
+For the latest developer version, see [Developer Notes](#DEVELOPER.MD).
 
 ## Usage
 
