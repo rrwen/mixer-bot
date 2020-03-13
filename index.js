@@ -15,12 +15,47 @@ const ws = require('ws');
  *
  * @example
  * var mixerbot = require('mixer-bot');
+ * 
+ * // Create a .env file in the same location and set
+ * // MIXER_ACCESS_TOKEN=***
+ * // MIXER_CHANNEL_ID=***
+ * 
+ * // Setup options
+ * var options = {};
+ * options.on = {};
+ * options.greeting = 'Hello!';
+ * 
+ * // Setup channel ID
+ * // Get your channel id here: https://mixer.com/api/v1/channels/<username>?fields=id
+ * options.channel_id = '<CHANNEL_ID>'; 
+ * 
+ * // Assign bot to pong user if they message !ping
+ * options.on.ChatMessage = data => {
+ * 	socket = data.socket;
+ * 	return response => {
+ * 		if (response.message.message[0].data.toLowerCase().startsWith('!ping')) {
+ * 			socket.call('msg', [`@${response.user_name} PONG!`]);
+ * 			console.log(`Ponged ${response.user_name}`);
+ * 		}
+ * 	}
+ * };
+ * 
+ * // Handle errors
+ * options.on.error = data => {
+ * 	return error => {
+ * 		console.error('Socket error');
+ * 		console.error(error);
+ * 	}
+ * };
+ * 
+ * // Run mixer bot
+ * mixerbot(options);
  */
 module.exports = options => {
 	
 	// (module_options) Options for the module
 	options = options || {};
-	options.channel_id = options.channel_id || null;
+	options.channel_id = options.channel_id || process.env.MIXER_CHANNEL_ID || null;
 	options.greeting = options.greeting || null;
 	options.on = options.on || {};
 

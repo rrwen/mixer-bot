@@ -38,7 +38,7 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 	t.pass('(MAIN) Package loaded');
 
 	// (test_options) Setup options
-	options = {};
+	var options = {};
 	options.on = {};
 
 	// (test_options_greet) Setup options for greeting message
@@ -47,10 +47,10 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 	// (test_options_on) Setup options for on actions
 	options.on.ChatMessage = function(data) {
 		socket = data.socket;
-		return data => {
-			if (data.message.message[0].data.toLowerCase().startsWith('!ping')) {
-				socket.call('msg', [`@${data.user_name} PONG!`]);
-				console.log(`Ponged ${data.user_name}`);
+		return response => {
+			if (response.message.message[0].data.toLowerCase().startsWith('!ping')) {
+				socket.call('msg', [`@${response.user_name} PONG!`]);
+				console.log(`Ponged ${response.user_name}`);
 			}
 		}
 	};
