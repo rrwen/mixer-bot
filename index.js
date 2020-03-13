@@ -14,7 +14,7 @@ const ws = require('ws');
  * @returns {Object} returns a mixerbot client.
  *
  * @example
- * var mixerbot = require('mixer-bot');
+ * const mixerbot = require('mixer-bot');
  * 
  * // Create a .env file in the same location and set
  * // MIXER_ACCESS_TOKEN=***
