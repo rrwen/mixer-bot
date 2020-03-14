@@ -75,6 +75,7 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 		t.end();
 		process.exit();
 	}).catch(err => {
+		console.error(err);
 		t.fail(msg);
 		t.end();
 		process.exit();

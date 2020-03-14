@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+// Richard Wen
+// rrwen.dev@gmail.com
 
 const lodash = require('lodash');
-const mixerbot = require('./index');
+const mixerbot = require('../index');
 
 // (bin_argv) Construct command line interface
 var argv = require('yargs')
@@ -14,10 +16,14 @@ var argv = require('yargs')
     .example('$0 channel_id=123456', 'Run a bot joining on channel_id')
     .example('$0 greeting="Welcome!"', 'Change welcome message when a user joins');
 
-// (bin_name) Get the name of the mixerbot or path to mixerbot js file
-var name = argv._[1];
+// (bin_run) Run if arguments supplied
+if (argv._.length > 0) {
 
-// (bin_run) Run the requested mixerbot options
-var bot_options = require(name);
-var options = lodash.merge(bot_options, argv)
-mixerbot(argv);
+    // (bin_run_name) Get the name of the mixerbot or path to mixerbot js file
+    var name = argv._[1];
+
+    // (bin_run_mixerbot) Run the requested mixerbot options
+    var bot_options = require(name);
+    var options = lodash.merge(bot_options, argv)
+    mixerbot(argv);
+}

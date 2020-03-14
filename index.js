@@ -1,8 +1,8 @@
 // Richard Wen
 // rrwen.dev@gmail.com
 
+const helpers = require('./src/helpers');
 const Mixer = require('@mixer/client-node');
-const ws = require('ws');
 
 /**
  * Creates a mixer bot client and runs it based on a set of options.
@@ -66,11 +66,7 @@ const ws = require('ws');
 module.exports = options => {
 	
 	// (module_options) Options for the module
-	options = options || {};
-	options.env = options.env || './.env';
-	options.channel_id = options.channel_id || process.env.MIXER_CHANNEL_ID || null;
-	options.greeting = options.greeting || null;
-	options.on = options.on || {};
+	options = helpers.assign_default_options(options);
 
 	// (module_env) Load the environment file
 	require('dotenv').config({path: options.env});
@@ -87,11 +83,11 @@ module.exports = options => {
 	}));
 
 	// (module_return) Return a promise object created from the options
-	return get_user_info(client).then(async user_info => {
+	return helpers.get_user_info(client).then(async user_info => {
 
 		// (module_return_socket) Create a socket from joining a chat channel
 		options.channel_id = options.channel_id || user_info.channel.id;
-		const socket = await join_chat(client, user_info.id, options.channel_id);
+		const socket = await helpers.join_chat(client, user_info.id, options.channel_id);
 	
 		// (module_return_greet) Greeting message
 		if (options.greeting != null) {
@@ -106,43 +102,3 @@ module.exports = options => {
 		return data;
 	});
 };
-
-/** 
- * Gets our Currently Authenticated Mixer user's information.
- * This returns an object full of useful information about the user whose OAuth Token we provided above.
- * 
- * @param {Object} client the mixer client to use for requesting information.
- * 
- * @returns {Promise.<>}
- */
-async function get_user_info(client) {
-	return client.request('GET', 'users/current').then(response => response.body);
-}
-
-/**
- * Gets connection information from Mixer's chat servers
- * 
- * @param {Number} channel_id the channel_id of the channel you'd like to get connection information for.
- * 
- * @returns {Promise.<>}
- */
-async function get_connection_info(client, channel_id) {
-	return new Mixer.ChatService(client)
-		.join(channel_id)
-		.then(response => response.body);
-}
-
-/**
- * Creates a Mixer chat socket and authenticates
- * 
- * @param {number} user_id The user to authenticate as
- * @param {number} channel_id The channel id of the channel you want to join
- * 
- * @returns {Promise.<>}
- */
-async function join_chat(client, user_id, channel_id) {
-    const join_info = await get_connection_info(client, channel_id);
-    const socket = new Mixer.Socket(ws, join_info.endpoints).boot();
-	return socket.auth(channel_id, user_id, join_info.authkey)
-		.then(() => socket);
-}
