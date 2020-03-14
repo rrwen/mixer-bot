@@ -1,8 +1,6 @@
 // Richard Wen
 // rrwen.dev@gmail.com
 
-require('dotenv').config()
-
 const Mixer = require('@mixer/client-node');
 const ws = require('ws');
 
@@ -11,6 +9,7 @@ const ws = require('ws');
  *
  * @module mixer-bot
  * @param {Object} [options={}] options for the mixer-bot.
+ * @param {String} options.env path to the .env file.
  * @param {String} options.channel_id channel id to join for the bot, which can be found here for a user: https://mixer.com/api/v1/channels/<username>?fields=id
  * @param {String} options.greeting the greeting message to display when the bot joins a channel
  * @param {Function} options.on a list of functions that define the mixer bot's response on channel actions (ChatMessage, UserJoin). Data is passed with reference to the mixer client (data.client), ws socket (data.socket), API user information (data.user_info), and these options (data.options).
@@ -68,9 +67,13 @@ module.exports = options => {
 	
 	// (module_options) Options for the module
 	options = options || {};
+	options.env = options.env || './.env';
 	options.channel_id = options.channel_id || process.env.MIXER_CHANNEL_ID || null;
 	options.greeting = options.greeting || null;
 	options.on = options.on || {};
+
+	// (module_env) Load the environment file
+	require('dotenv').config({path: options.env});
 
 	// (module_client) Create a mixer client
 	const client = new Mixer.Client(new Mixer.DefaultRequestRunner());

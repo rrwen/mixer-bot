@@ -40,6 +40,9 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 	// (test_options) Setup options
 	var options = {};
 	options.on = {};
+	
+	// (test_options_env) Set env file
+	options.env = './.env';
 
 	// (test_options_greet) Setup options for greeting message
 	options.greeting = 'Greet test!'
@@ -66,13 +69,14 @@ test('Tests for ' + json.name + ' (' + json.version + ')', t => {
 	};
 
 	// (test_run) Test package run with above options
-	mixerbot(options)
-		.then(data => {
-			t.pass('(MAIN) Package runs with greeting and on action');
-			data.socket.close();
-		})
-		.catch(err => {
-			t.fail(err);
-		});
-	t.end();
+	var msg = '(MAIN) Package runs with env, greeting, and on options'
+	mixerbot(options).then(data => {
+		t.pass(msg);
+		t.end();
+		process.exit();
+	}).catch(err => {
+		t.fail(msg);
+		t.end();
+		process.exit();
+	});
 });
