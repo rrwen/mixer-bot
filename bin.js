@@ -7,3 +7,9 @@ var argv = require('yargs')
     .example('$0 path/to/bot.js', 'Run a bot using the js file')
     .example('$0 channel_id=123456', 'Run a bot joining on channel_id')
     .example('$0 greeting="Welcome!"', 'Change welcome message when a user joins');
+
+var mixerbot = require('./index.js');
+var options = argv;
+var name = argv._[1];
+const bot = require(name);
+mixerbot(argv)
