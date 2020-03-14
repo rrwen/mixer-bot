@@ -35,9 +35,9 @@
               
                 
                 <li><a
-                  href='#get_user_info'
+                  href='#assign_default_options'
                   class="">
-                  get_user_info
+                  assign_default_options
                   
                 </a>
                 
@@ -48,6 +48,16 @@
                   href='#get_connection_info'
                   class="">
                   get_connection_info
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#get_user_info'
+                  class="">
+                  get_user_info
                   
                 </a>
                 
@@ -254,19 +264,18 @@ mixerbot(options);</pre>
   
   <div class='clearfix'>
     
-    <h3 class='fl m0' id='get_user_info'>
-      get_user_info
+    <h3 class='fl m0' id='assign_default_options'>
+      assign_default_options
     </h3>
     
     
   </div>
   
 
-  <p>Gets our Currently Authenticated Mixer user's information.
-This returns an object full of useful information about the user whose OAuth Token we provided above.</p>
+  <p>Assigns the default options for mixerbot.</p>
 
 
-  <div class='pre p1 fill-light mt0'>get_user_info(client: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  <div class='pre p1 fill-light mt0'>assign_default_options(options: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></div>
   
   
 
@@ -283,8 +292,8 @@ This returns an object full of useful information about the user whose OAuth Tok
       
         <div class='space-bottom0'>
           <div>
-            <span class='code bold'>client</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    the mixer client to use for requesting information.
+            <span class='code bold'>options</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    an options object to assign defaults.
 
           </div>
           
@@ -295,6 +304,14 @@ This returns an object full of useful information about the user whose OAuth Tok
 
   
 
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></code>:
+        the default options.
+
+      
+    
   
 
   
@@ -354,6 +371,68 @@ This returns an object full of useful information about the user whose OAuth Tok
           <div>
             <span class='code bold'>channel_id</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">Number</a>)</code>
 	    the channel_id of the channel you'd like to get connection information for.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+            <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='get_user_info'>
+      get_user_info
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Gets our Currently Authenticated Mixer user's information.
+This returns an object full of useful information about the user whose OAuth Token we provided above.</p>
+
+
+  <div class='pre p1 fill-light mt0'>get_user_info(client: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>client</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+	    the mixer client to use for requesting information.
 
           </div>
           

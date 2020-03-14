@@ -7,7 +7,7 @@
     "mixerbot": "./src/bin.js"
   },
   "scripts": {
-    "coverage": "istanbul cover node_modules/tape/bin/tape tests/test.js && cat ./coverage/lcov.info | coveralls",
+    "coverage": "istanbul cover node_modules/tape/bin/tape tests/test.js & cat ./coverage/lcov.info | coveralls",
     "docs": "documentation build ./index.js -f html -o docs",
     "istanbul": "istanbul cover node_modules/tape/bin/tape tests/test.js",
     "test": "node ./tests/test.js"
