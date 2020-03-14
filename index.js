@@ -7,13 +7,13 @@ const Mixer = require('@mixer/client-node');
 const ws = require('ws');
 
 /**
- * Creates a mixer bot client.
+ * Creates a mixer bot client and runs it based on a set of options.
  *
  * @module mixer-bot
  * @param {Object} [options={}] options for the mixer-bot.
  * @param {String} options.channel_id channel id to join for the bot, which can be found here for a user: https://mixer.com/api/v1/channels/<username>?fields=id
  * @param {String} options.greeting the greeting message to display when the bot joins a channel
- * @param {Function} options.on a list of functions that define the mixer bot's response on channel actions (ChatMessage, UserJoin). Data is passed with reference to the mixer client (data.client) and ws socket (data.socket).
+ * @param {Function} options.on a list of functions that define the mixer bot's response on channel actions (ChatMessage, UserJoin). Data is passed with reference to the mixer client (data.client), ws socket (data.socket), API user information (data.user_info), and these options (data.options).
  * @returns {Object} returns a mixerbot client.
  *
  * @example
@@ -87,7 +87,8 @@ module.exports = options => {
 	return get_user_info(client).then(async user_info => {
 
 		// (module_return_socket) Create a socket from joining a chat channel
-		const socket = await join_chat(client, user_info.id, options.channel_id || user_info.channel.id);
+		options.channel_id = options.channel_id || user_info.channel.id;
+		const socket = await join_chat(client, user_info.id, options.channel_id);
 	
 		// (module_return_greet) Greeting message
 		if (options.greeting != null) {
@@ -95,7 +96,7 @@ module.exports = options => {
 		}
 	
 		// (module_return_actions) Assign actions to the socket for the bot
-		data = {'client': client, 'socket': socket};
+		data = {'client': client, 'options': options, 'socket': socket, 'user_info': user_info, };
 		for (const action in options.on) {
 			socket.on(action, options.on[action](data))
 		}

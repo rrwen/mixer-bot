@@ -1,8 +1,11 @@
 {
   "name": "mixer-bot",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simplified chat bot for the mixer live streaming platform",
   "main": "index.js",
+  "bin": {
+    "mixerbot": "./bin.js"
+  },
   "scripts": {
     "coverage": "istanbul cover node_modules/tape/bin/tape tests/test.js && cat ./coverage/lcov.info | coveralls",
     "docs": "documentation build ./index.js -f html -o docs",
@@ -32,6 +35,7 @@
   "dependencies": {
     "@mixer/client-node": "^3.5.0",
     "dotenv": "^8.2.0",
-    "ws": "^7.2.3"
+    "ws": "^7.2.3",
+    "yargs": "^15.3.0"
   }
 }
