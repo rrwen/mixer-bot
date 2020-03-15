@@ -2,13 +2,13 @@
   "name": "mixer-bot",
   "version": "0.0.2",
   "description": "Simplified chat bot for the mixer live streaming platform",
-  "main": "index.js",
+  "main": "./src/index.js",
   "bin": {
-    "mixerbot": "./src/bin.js"
+    "mixer-bot": "./src/bin.js"
   },
   "scripts": {
     "coverage": "istanbul cover node_modules/tape/bin/tape tests/test.js & cat ./coverage/lcov.info | coveralls",
-    "docs": "documentation build ./index.js -f html -o docs",
+    "docs": "documentation build ./src/index.js -f html -o docs",
     "istanbul": "istanbul cover node_modules/tape/bin/tape tests/test.js",
     "test": "node ./tests/test.js"
   },
@@ -38,5 +38,6 @@
     "lodash": "^4.17.15",
     "ws": "^7.2.3",
     "yargs": "^15.3.0"
-  }
+  },
+  "_is_mixerbot": true
 }

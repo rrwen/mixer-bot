@@ -22,14 +22,26 @@ Simplified chat bot for the mixer live streaming platform
 2. Install [mixer-bot](https://www.npmjs.com/package/mixer-bot) via `npm`
 
 ```
-npm install --save mixer-bot
+npm install -g mixer-bot
 ```
 
 For the latest developer version, see [Developer Notes](DEVELOPER.md).
 
 ## Usage
 
-An example usage of mixer-bot:
+### In the Command Line
+
+To run a mixer-bot:
+
+* `<name>` is the name of the mixer-bot npm package or .js file 
+
+```
+mixer-bot run <name>
+```
+
+### In Node.js
+
+An example usage of mixer-bot in `node`:
 
 ```javascript
 const mixerbot = require('mixer-bot');

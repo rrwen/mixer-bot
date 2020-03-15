@@ -1,10 +1,7 @@
-// Richard Wen
-// rrwen.dev@gmail.com
-
 // (packages) Package dependencies
 var fs = require('fs');
 var moment = require('moment');
-var mixerbot = require('../index.js');
+var mixerbot = require('../src/index.js');
 var test = require('tape');
 
 // (test_info) Get package metadata

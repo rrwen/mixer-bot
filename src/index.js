@@ -1,7 +1,4 @@
-// Richard Wen
-// rrwen.dev@gmail.com
-
-const helpers = require('./src/helpers');
+const helpers = require('./helpers');
 const Mixer = require('@mixer/client-node');
 
 /**

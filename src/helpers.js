@@ -1,6 +1,3 @@
-// Richard Wen
-// rrwen.dev@gmail.com
-
 const Mixer = require('@mixer/client-node');
 const ws = require('ws');
 
@@ -17,7 +14,7 @@ var assign_default_options = (options) => {
 	options.channel_id = options.channel_id || process.env.MIXER_CHANNEL_ID || null;
 	options.greeting = options.greeting || null;
 	options.on = options.on || {};
-	return options
+	return options;
 };
 
 /**
