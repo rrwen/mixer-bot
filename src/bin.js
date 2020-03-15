@@ -2,7 +2,7 @@
 
 const helpers = require('./helpers')
 const lodash = require('lodash');
-const mixer-bot = require('./index');
+const mixerbot = require('./index');
 
 // (bin_argv) Construct command line interface
 var argv = require('yargs')
@@ -38,7 +38,7 @@ if (command == 'run'){
         var options = lodash.merge(bot_options, argv);
     
         // (bin_run_mixer-bot) Run the mixer-bot with the given options
-        mixer-bot(argv).catch(err => {
+        mixerbot(argv).catch(err => {
             console.error(err);
         });
     
@@ -54,9 +54,9 @@ if (command == 'run'){
     
         // (bin_run_error_invalid_module) Module is not a mixer-bot module
         try {
-            var mixer-bot_module = require(name);
-            var is_mixer-bot = mixer-bot_module.is_mixer-bot;
-            var has_options = mixer-bot_module.has_options;
+            var mixerbot_module = require(name);
+            var is_mixerbot = mixerbot_module.is_mixerbot;
+            var has_options = mixerbot_module.has_options;
         } catch(e) {
             console.error(`Error: The mixer-bot "${name}" is not a mixer-bot module.`);
             process.exit(e.code);
