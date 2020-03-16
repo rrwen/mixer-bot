@@ -45,8 +45,8 @@ const Mixer = require('@mixer/client-node');
  * 	socket = data.socket;
  * 	return response => {
  * 		if (response.message.message[0].data.toLowerCase().startsWith('!ping')) {
- * 			socket.call('msg', [`@${response.username} PONG!`]);
- * 			console.log(`Ponged ${response.username}`);
+ * 			socket.call('msg', [`@${response.user_name} PONG!`]);
+ * 			console.log(`Ponged ${response.user_name}`);
  * 		}
  * 	}
  * };
