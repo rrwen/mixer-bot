@@ -3,6 +3,7 @@
 Richard Wen  
 rrwen.dev@gmail.com  
 
+* [Github](https://github.com/rrwen/mixer-bot)
 * [Documentation](https://rrwen.github.io/mixer-bot)
 
 Simplified chat bot for the mixer live streaming platform
