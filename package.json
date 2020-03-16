@@ -1,6 +1,6 @@
 {
   "name": "mixer-bot",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Simplified chat bot for the mixer live streaming platform",
   "main": "./src/index.js",
   "bin": {
@@ -48,6 +48,7 @@
     "@mixer/client-node": "^3.5.0",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
+    "log-timestamp": "^0.3.0",
     "ws": "^7.2.3",
     "yargs": "^15.3.0"
   }

@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+require('log-timestamp');
 const fs = require('fs')
 const helpers = require('./helpers')
 const lodash = require('lodash');
@@ -63,7 +64,7 @@ if (command == 'run'){
             console.log(`Running mixer-bot "${name}"...`);
             console.log(`Joined channel at id "${data.options.channel_id}"!`);
             console.log(`Bot id is "${data.user_info.id}"`);
-            console.log(`Bot name is "${data.user_info.username}"`);
+            console.log(`Bot name is @${data.user_info.username}`);
         })
         .catch(err => {
             console.error(err);

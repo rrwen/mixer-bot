@@ -1,3 +1,4 @@
+require('log-timestamp');
 const helpers = require('./helpers');
 const Mixer = require('@mixer/client-node');
 
@@ -34,7 +35,7 @@ const Mixer = require('@mixer/client-node');
  *     socket = data.socket;
  *     return response => {
  *         socket.call('msg',[
- *             `Hi ${data.username}! I'm pingbot! Write !ping and I will pong back!`,
+ *             `Hi ${response.username}! I'm pingbot! Write !ping and I will pong back!`,
  *         ]);
  *     }
  * };
@@ -44,8 +45,8 @@ const Mixer = require('@mixer/client-node');
  * 	socket = data.socket;
  * 	return response => {
  * 		if (response.message.message[0].data.toLowerCase().startsWith('!ping')) {
- * 			socket.call('msg', [`@${response.user_name} PONG!`]);
- * 			console.log(`Ponged ${response.user_name}`);
+ * 			socket.call('msg', [`@${response.username} PONG!`]);
+ * 			console.log(`Ponged ${response.username}`);
  * 		}
  * 	}
  * };
