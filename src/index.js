@@ -8,7 +8,7 @@ const Mixer = require('@mixer/client-node');
  * @param {Object} [options={}] options for the mixer-bot.
  * @param {String} options.env path to the .env file.
  * @param {String} options.channel_id channel id to join for the bot, which can be found here for a user: https://mixer.com/api/v1/channels/<username>?fields=id
- * @param {String} options.greeting the greeting message to display when the bot joins a channel
+ * @param {String} options.greeting the greeting message to display when the bot joins a channel (If you use "@me" here it will be replaced with your username)
  * @param {Function} options.on a list of functions that define the mixer bot's response on channel actions (ChatMessage, UserJoin). Data is passed with reference to the mixer client (data.client), ws socket (data.socket), API user information (data.user_info), and these options (data.options).
  * @returns {Object} returns a mixerbot client.
  *
@@ -89,7 +89,7 @@ module.exports = options => {
 	
 		// (module_return_greet) Greeting message
 		if (options.greeting != null) {
-			socket.call('msg', options.greeting.split('\n'));
+			socket.call('msg', options.greeting.replace('@me', user_info.username).split('\n'));
 		}
 	
 		// (module_return_actions) Assign actions to the socket for the bot
