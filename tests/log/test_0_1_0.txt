@@ -2,7 +2,7 @@ TAP version 13
 # Tests for mixer-bot (0.1.0)
 # Node.js (v8.10.0)
 # Description: Simplified chat bot for the mixer live streaming platform
-# Date: 2020-03-16 12:42:01
+# Date: 2020-03-16 12:42:33
 # Dependencies: @mixer/client-node (^3.5.0), dotenv (^8.2.0), lodash (^4.17.15), log-timestamp (^0.3.0), ws (^7.2.3), yargs (^15.3.0)
 # Developer: coveralls (^3.0.0), documentation (^5.3.3), istanbul (^0.4.5), moment (^2.19.1), tape (^4.8.0)
 ok 1 (MAIN) Package loaded
