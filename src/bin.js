@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('fs')
 const helpers = require('./helpers')
 const lodash = require('lodash');
 const mixerbot = require('./index');
@@ -7,25 +8,32 @@ const mixerbot = require('./index');
 // (bin_argv) Construct command line interface
 var argv = require('yargs')
     .version()
+    .usage('Command line tool for running Mixer bots')
     .demandCommand()
-    .command('list', 'lists available mixer-bots by <name> on npm')
-    .command('run <name> [options]', 'runs a mixer-bot given the <name>')
+    .command('env <token> [env]', 'Create a .env file with the <token>')
+    .command('run <name> [options]', 'Run a mixer-bot given the <name>')
     .string('name')
     .string('env')
     .string('channel_id')
     .string('greeting')
+    .default('env', './.env')
     .describe('name', 'name of the mixer-bot module or .js file')
     .describe('env', 'path to the .env file')
-    .describe('channel_id', 'Channel id to join')
-    .describe('greeting', 'Greeting when a user joins a channel')
-    .example('$0 path/to/bot.js', 'Run a bot using the js file')
-    .example('$0 <name> --channel_id=123456', 'Run a bot joining on channel_id')
-    .example('$0 <name> --greeting="Welcome!"', 'Change welcome message when a user joins')
+    .describe('channel_id', 'channel id to join')
+    .describe('greeting', 'greeting when a user joins a channel')
+    .describe('token', 'user access token from Mixer')
+    .example('$0 env <token>', 'Create .env file with <token> inside')
+    .example('$0 run <path>.js', 'Run a bot using the <path>.js file')
+    .example('$0 run <name> --channel_id=123456', 'Run a bot in --channel_id')
+    .example('$0 run <name> --greeting="Welcome!"', 'Edit welcome message when users join')
     .argv;
 var command = argv._[0];
 
-// (bin_list) Lists the available mixer-bots
-
+// (bin_init) Creates an .env file with a mixer token
+if (command == 'env') {
+    var env = argv.env;
+    fs.writeFileSync(env, `MIXER_ACCESS_TOKEN=${argv.token}`);
+}
 
 // (bin_run) Try to run the command and check for errors if found
 if (command == 'run'){
@@ -38,7 +46,13 @@ if (command == 'run'){
         var options = lodash.merge(bot_options, argv);
     
         // (bin_run_mixer-bot) Run the mixer-bot with the given options
-        mixerbot(argv).catch(err => {
+        mixerbot(options).then(data => {
+            console.log(`Running mixer-bot "${name}"...`);
+            console.log(`Joined channel at id "${data.options.channel_id}"!`);
+            console.log(`Bot id is "${data.user_info.id}"`);
+            console.log(`Bot name is "${data.user_info.username}"`);
+        })
+        .catch(err => {
             console.error(err);
         });
     

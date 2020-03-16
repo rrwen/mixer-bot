@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset='utf-8' />
-  <title>mixer-bot 0.0.2 | Documentation</title>
+  <title>mixer-bot 0.0.3 | Documentation</title>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' type='text/css' rel='stylesheet' />
   <link href='assets/style.css' type='text/css' rel='stylesheet' />
@@ -14,7 +14,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>mixer-bot</h3>
-          <div class='mb1'><code>0.0.2</code></div>
+          <div class='mb1'><code>0.0.3</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -212,8 +212,9 @@ options.on = {};
 options.greeting = <span class="hljs-string">'Hello!'</span>;
 
 <span class="hljs-comment">// Setup channel ID</span>
+<span class="hljs-comment">// If left unset, this will be the id to your channel</span>
 <span class="hljs-comment">// Get your channel id here: https://mixer.com/api/v1/channels/&lt;username&gt;?fields=id</span>
-options.channel_id = <span class="hljs-string">'&lt;CHANNEL_ID&gt;'</span>;
+<span class="hljs-comment">// options.channel_id = '&lt;CHANNEL_ID&gt;';</span>
 
 <span class="hljs-comment">// Assign bot to greet user when they enter</span>
 options.on.UserJoin = <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> {

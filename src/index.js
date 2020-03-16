@@ -25,8 +25,9 @@ const Mixer = require('@mixer/client-node');
  * options.greeting = 'Hello!';
  * 
  * // Setup channel ID
+ * // If left unset, this will be the id to your channel
  * // Get your channel id here: https://mixer.com/api/v1/channels/<username>?fields=id
- * options.channel_id = '<CHANNEL_ID>';
+ * // options.channel_id = '<CHANNEL_ID>';
  * 
  * // Assign bot to greet user when they enter
  * options.on.UserJoin = data => {

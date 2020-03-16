@@ -1,6 +1,6 @@
 {
   "name": "mixer-bot",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simplified chat bot for the mixer live streaming platform",
   "main": "./src/index.js",
   "bin": {
@@ -25,6 +25,18 @@
     "url": "https://github.com/rrwen/mixer-bot/issues"
   },
   "homepage": "https://github.com/rrwen/mixer-bot#readme",
+  "keywords": [
+    "simple",
+    "chat",
+    "bot",
+    "mixer",
+    "live",
+    "stream",
+    "streaming",
+    "platform",
+    "ms",
+    "microsoft"
+  ],
   "devDependencies": {
     "coveralls": "^3.0.0",
     "documentation": "^5.3.3",
@@ -38,6 +50,5 @@
     "lodash": "^4.17.15",
     "ws": "^7.2.3",
     "yargs": "^15.3.0"
-  },
-  "_is_mixerbot": true
+  }
 }

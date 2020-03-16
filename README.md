@@ -29,7 +29,18 @@ For the latest developer version, see [Developer Notes](DEVELOPER.md).
 
 ## Usage
 
+The `mixerbot` package can be used as a command line tool or programatically in Node.js.
+
 ### In the Command Line
+
+First, create a `.env` file in the current directory if it does not exist:
+
+* Replace `<token>` with your access token
+* A file `.env` will be created (**do not share this file**)
+
+```
+mixer-bot env <token>
+```
 
 To run a mixer-bot:
 
@@ -56,8 +67,9 @@ options.on = {};
 options.greeting = 'Hello!';
 
 // Setup channel ID
+// If left unset, this will be the id to your channel
 // Get your channel id here: https://mixer.com/api/v1/channels/<username>?fields=id
-options.channel_id = '<CHANNEL_ID>';
+// options.channel_id = '<CHANNEL_ID>';
 
 // Welcome a user when they join
 options.on.UserJoin = data => {
@@ -94,10 +106,13 @@ mixerbot(options);
 
 See [Documentation](https://rrwen.github.io/mixer-bot) for more details.
 
-
 ## Contributions
 
 1. Reports for issues and suggestions can be made using the [issue submission](https://github.com/rrwen/mixer-bot/issues) interface.
 2. Code contributions are submitted via [pull requests](https://github.com/rrwen/mixer-bot/pulls)
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+## See Also
+
+* [Developer Notes](DEVELOPER.md)
