@@ -60,7 +60,7 @@ if (command == 'run'){
             var bot_options = require(name)(default_options);
         } catch(e) {
             try{ // try using short name of mixer-bot
-                var bot_options = require(name.replace('mixer-bot-', '').replace('mixerbot-'))(default_options);
+                var bot_options = require('mixer-bot-' + name)(default_options);
             } catch(e) {
                 console.error(err);
             }
