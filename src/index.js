@@ -89,7 +89,7 @@ module.exports = options => {
 	
 		// (module_return_greet) Greeting message
 		if (options.greeting != null) {
-			socket.call('msg', [options.greeting]);
+			socket.call('msg', options.greeting.split('\n'));
 		}
 	
 		// (module_return_actions) Assign actions to the socket for the bot
