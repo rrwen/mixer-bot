@@ -4,32 +4,45 @@ const fs = require('fs')
 const helpers = require('./helpers')
 const lodash = require('lodash');
 const mixerbot = require('./index');
+const path = require('path');
 
 // (bin_argv) Construct command line interface
 var argv = require('yargs')
     .version()
     .usage('Command line tool for running Mixer bots')
     .demandCommand()
-    .command('env <token> [env]', 'Create a .env file with the <token>')
+    .command('env [token] [env]', 'Create a .env file with the <token>')
     .command('run <name> [options]', 'Run a mixer-bot given the <name>')
+    .command('template [file]', 'Create a .js mixer-bot template file')
     .string('name')
     .string('env')
     .string('channel_id')
     .string('greeting')
+    .string('token')
+    .string('file')
     .default('env', './.env')
+    .default('file', './template.js')
     .describe('name', 'name of the mixer-bot module or .js file')
     .describe('env', 'path to the .env file')
     .describe('channel_id', 'channel id to join')
     .describe('greeting', 'greeting when a user joins a channel')
     .describe('token', 'user access token from Mixer')
+    .describe('file', '.js template file path')
     .example('$0 env <token>', 'Create .env file with <token> inside')
     .example('$0 run <path>.js', 'Run a bot using the <path>.js file')
     .example('$0 run <name> --channel_id=123456', 'Run a bot in --channel_id')
-    .example('$0 run <name> --greeting="Welcome!"', 'Edit welcome message when users join')
+    .example('$0 run <name> --greeting=Hi', 'Edit welcome message when users join')
     .argv;
 var command = argv._[0];
 
-// (bin_init) Creates an .env file with a mixer token
+// (bin_template) Create a template mixer-bot js file
+if (command == 'template') {
+    var template = path.join(__dirname, 'template.js');
+    var copy_to = argv.file;
+    fs.copyFileSync(template, copy_to);
+}
+
+// (bin_env) Creates an .env file with a mixer token
 if (command == 'env') {
     var env = argv.env;
     fs.writeFileSync(env, `MIXER_ACCESS_TOKEN=${argv.token}`);

@@ -33,7 +33,7 @@ The `mixerbot` package can be used as a command line tool or programatically in 
 
 ### In the Command Line
 
-First, create a `.env` file in the current directory if it does not exist:
+Create a `.env` file in the current directory if it does not exist:
 
 * Replace `<token>` with your access token
 * A file `.env` will be created (**do not share this file**)
@@ -48,6 +48,17 @@ To run a mixer-bot:
 
 ```
 mixer-bot run <name>
+```
+
+If you want to create your own mixer-bot:
+
+1. Create a bot template file `mixer-bot template`
+2. Edit this file to change bot behaviour
+3. Run the both with `mixer-bot run`
+
+```
+mixer-bot template ./template.js
+mixer-bot run template.js
 ```
 
 ### In Node.js
