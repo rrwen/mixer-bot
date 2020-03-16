@@ -31,7 +31,7 @@ var argv = require('yargs')
     .describe('file', '.js template file path')
     .example('$0 env <token>', 'Create .env file with <token> inside')
     .example('$0 run <path>.js', 'Run a bot using the <path>.js file')
-    .example('$0 run <name> --channel_id=123456', 'Run a bot in --channel_id')
+    .example('$0 run <name> --channel_id=123456', 'Run a bot in channel_id')
     .example('$0 run <name> --greeting=Hi', 'Edit welcome message when users join')
     .argv;
 var command = argv._[0];
@@ -56,7 +56,15 @@ if (command == 'run'){
 
         // (bin_run_options) Get the requested mixer-bot options
         var default_options = helpers.assign_default_options()
-        var bot_options = require(name)(default_options);
+        try{
+            var bot_options = require(name)(default_options);
+        } catch(e) {
+            try{ // try using short name of mixer-bot
+                var bot_options = require(name.replace('mixer-bot-', '').replace('mixerbot-'))(default_options);
+            } catch(e) {
+                console.error(err);
+            }
+        }
         var options = lodash.merge(bot_options, argv);
     
         // (bin_run_mixer-bot) Run the mixer-bot with the given options
